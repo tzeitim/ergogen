@@ -182,7 +182,7 @@ pcbs:
         type: promicro
         anchor:
           ref: board_far_home
-          shift: [1.2cx, -0.5cx]
+          shift: [1.2 cx, -0.5 cx]
           rotate: -90
         params:
           orientation: down
@@ -190,8 +190,8 @@ pcbs:
         type: pcm12
         anchor:
           ref: board_far_home
-          shift: [-75, -22]
-          rotate: 0
+          shift: [2 cx, -cx]
+          rotate: 90
         nets:
           from: pos  
           to: RAW
@@ -231,8 +231,8 @@ pcbs:
           r1: RST  
           r2: GND
         anchor:
-          ref: board_pinkie_bottom
-          shift: [7, -15]
+          ref: board_far_bottom
+          shift: [35, -10]
           rotate: 0
         params:
           reverse: true 
