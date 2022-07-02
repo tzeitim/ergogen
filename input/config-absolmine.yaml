@@ -117,7 +117,7 @@ points:
           origin: [-15, -15]
           rows:
            plop:
-            shift: [-1, -cx*2 -5]
+            shift: [0.75 cx, -2.25 cx]
             column_net: P21
       rows:
         thumb:
@@ -145,7 +145,7 @@ outlines:
         - ref: board_far_top
           shift: [2 cx, 2]
         - ref: thumbfan_far_thumb
-          shift: [0.65 cx, 10]
+          shift: [1.25 cx, 10]
         - ref: thumbfan_far_plop
           shift: [0.65cx, -0.61cx]
         - ref: board_pinkie_bottom
