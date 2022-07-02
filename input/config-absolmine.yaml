@@ -128,24 +128,26 @@ outlines:
       main:
         type: keys
         side: left
-        size: [1.5cx , 1.5cx]
+        size: [cx, cx]
+        bevel: 2
+        corner: 2
     filler:
       - type: polygon
         points:
         - ref: board_pinkie_top
-          shift: [-1.1 cx, cx]
+          shift: [-0.75 cx, 0.5cx]
         - ref: board_ring_top
-          shift: [-10, cx]          
+          shift: [-10, 0.6 cx]          
         - ref: board_middle_top
-          shift: [-5, 1.3 cx]
-        - ref: board_middle_top
-          shift: [17, 1.1 cx]
+          shift: [-5, 0.75 cx]
+        - ref: board_index_top
+          shift: [cx, .6 cx]
         - ref: board_far_top
           shift: [2 cx, 2]
         - ref: thumbfan_far_thumb
-          shift: [0.9 cx, 10]
+          shift: [0.65 cx, 10]
         - ref: thumbfan_far_plop
-          shift: [cx, -1cx]
+          shift: [0.65cx, -0.61cx]
         - ref: board_pinkie_bottom
           shift: [-cx, -50]
     mc:
@@ -159,19 +161,22 @@ outlines:
     cutout:
       - type: outline
         name: raw
-        fillet: 5
-      - type: outline
-        name: mc
-        fillet: 5
+        #fillet: 5
       - type: outline
         name: filler
         fillet: 5
-        #operation: stack
+        operation: stack
     keycap_outlines:
       - type: keys
         side: left
         size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
         bound: false               
+    demo:
+        - type: outline
+          name: keycap_outlines
+        - type: outline
+          name: filler
+          operation: stack
 pcbs:
   mine:
     outlines:
