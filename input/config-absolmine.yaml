@@ -1,6 +1,8 @@
 units:
   cxx: cx+0.1
   cyy: cy+5
+  mcx: 1.25cx
+  mcy: 2.25cy 
 points:
    key:
       padding: cy*1.15
@@ -96,7 +98,7 @@ points:
               top: 
                 #bind: [0, 2.5cx, 0, 0]
                 column_net: P8
-    thumb_fan:
+    thumbfan:
       anchor:
         ref: board_pinkie_bottom
         shift: [18*2.65, -18*3.5]
@@ -120,13 +122,41 @@ points:
 outlines:
   exports:
     raw: 
-      - type: keys
+      main:
+        type: keys
         side: left
         size: [1.5cx , 1.5cx]
+    filler:
+      - type: polygon
+        points:
+        - ref: board_pinkie_bottom
+          shift: [-5, 5]
+        - ref: board_far_bottom
+          shift: [5, 5]
+        - ref: thumbfan_near_thumb
+          shift: [0, -10]
+        - ref: board_pinkie_bottom
+          shift: [-10, -50]
+        operation: stack
+    mc:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - board_far_home
+          shift: [mcx/2, -mcy/2]
+        size: [mcx, mcy*1.2] 
     cutout:
       - type: outline
         name: raw
-        fillet: 3
+        fillet: 5
+      - type: outline
+        name: mc
+        fillet: 5
+      - type: outline
+        name: filler
+        fillet: 5
+        operation: add
     keycap_outlines:
       - type: keys
         side: left
@@ -142,8 +172,8 @@ pcbs:
         type: promicro
         anchor:
           ref: board_far_home
-          #shift: [-25, -17]
-          rotate: 0
+          shift: [1.2cx, 0]
+          rotate: -90
         params:
           orientation: down
       pcm12:
