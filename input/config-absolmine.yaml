@@ -105,12 +105,18 @@ points:
                 column_net: P8
     thumb_fan:
       anchor:
-        ref: board_index_bottom
-        shift: [-7, -19]
+        ref: board_pinkie_bottom
+        shift: [18*2.65, -18*3.5]
+        orient: 0
       columns:
         near:
+          rotate: -44
         home:
+          rotate: -5
+          origin: [-15, -15]          
         far:
+          rotate: -10
+          origin: [-15, -15]
       rows:
         thumb:
          column_net: P21
