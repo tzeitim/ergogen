@@ -1,5 +1,5 @@
 units:
-  cxx: cx+0.5
+  cxx: cx+0.1
   cyy: cy+5
 points:
    key:
@@ -26,7 +26,7 @@ points:
                 reverse: true
    zones:
     board:
-      rotate: 0 #30 # check the outlines when not 0
+      rotate: 30 # check the outlines when not 0
       rows:
         bottom:
         home:
@@ -38,12 +38,11 @@ points:
             rows:
               top:
                 column_net: P21
-                bind: [0.5, 3, 3, 1]
+                rotate: -10
               bottom:
-                bind: [0, 0, 0, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
+                shift: [3, 0]
                 column_net: P21
               home:
-                bind: [0.5, 3, 3, 1]
                 column_net: P20
           ring:
             stagger: 12
@@ -52,13 +51,11 @@ points:
             spread: cxx
             rows: 
               bottom:
-                bind: [0, 0, 2, 3]
+                #bind: [0, 1, 1.5cy, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
                 column_net: P19
               home: 
-                bind: [3,0,3,1]
                 column_net: P18
               top: 
-                bind: [0.5,3,0,1]
                 column_net: P15
           middle: 
             stagger: 5
@@ -67,41 +64,37 @@ points:
             origin: [-cy*3.5, -cx*0.9]
             rows: 
               bottom:
-                bind: [0, 3, 20, 3]
+                #bind: [0, 1, 1.5cy, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
                 column_net: P14
               home: 
-                bind: [3,0,3,0]
                 column_net: P16
               top:
                 column_net: P10
-                bind: [0.5,1,0,1]
           index: 
             stagger: -6
             rotate: -5
             spread: cxx
             rows: 
               bottom:
-                bind: [0, 3, 0, 0]
+                #bind: [0, 1, 1.5cy, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
                 column_net: P4
               home: 
-                bind: [3,0,3,0]
                 column_net: P5
               top: 
-                bind: [0.5,1,3,3]
                 column_net: P6
           far: 
-            stagger: -(cy/2)
+            stagger: -(cy/1.5)
             spread: cxx
             origin: [-cy, -cx]
             rows: 
               bottom:
-                bind: [3,1, 0, 73]
+                #bind: [0, 2.5cx, 0, 0]
                 column_net: P9
               home: 
-                bind: [3,1,3,0]
+                #bind: [0, 2.5cx, 0, 0]
                 column_net: P7 
               top: 
-                bind: [0.5,1,3,3]
+                #bind: [0, 2.5cx, 0, 0]
                 column_net: P8
     thumb_fan:
       anchor:
@@ -117,16 +110,19 @@ points:
         far:
           rotate: -10
           origin: [-15, -15]
+          rows:
+           plop:
+            shift: [-1, -cx*2 -5]
+            column_net: P21
       rows:
         thumb:
          column_net: P21
-
 outlines:
   exports:
     raw: 
       - type: keys
         side: left
-        size: [1cx , 1cx]
+        size: [1.5cx , 1.5cx]
     cutout:
       - type: outline
         name: raw
@@ -146,7 +142,7 @@ pcbs:
         type: promicro
         anchor:
           ref: board_far_home
-          shift: [-25, -17]
+          #shift: [-25, -17]
           rotate: 0
         params:
           orientation: down
