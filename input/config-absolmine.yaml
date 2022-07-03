@@ -1,11 +1,11 @@
 units:
   cxx: cx+1
   cyy: cy+5
-  mcx: 1.25cx
-  mcy: 2.25cy 
+  mcx: 1.25 cx
+  mcy: 2.25 cy 
 points:
    key:
-      padding: cy*1.15
+      padding: 1.15 cy
       footprints:
           choc_hotswap:
             type: choc
@@ -40,15 +40,15 @@ points:
             rows:
               top:
                 bind: [0, 0] 
-                column_net: P21
+                column_net: P0
                 rotate: -10
               home:
-                column_net: P20
+                column_net: PX
                 bind: [0, 0] 
               bottom:
                 shift: [3, 0]
                 bind: [0, 0] 
-                column_net: P21
+                column_net: PX
           ring:
             stagger: 12
             rotate: -105+90
@@ -56,12 +56,11 @@ points:
             spread: cxx
             rows: 
               bottom:
-                #bind: [0, 1, 1.5cy, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
-                column_net: P19
+                column_net: PX
               home: 
-                column_net: P18
+                column_net: PX
               top: 
-                column_net: P15
+                column_net: P1
           middle: 
             stagger: 5
             spread: cxx
@@ -69,24 +68,22 @@ points:
             origin: [-cy*3.5, -cx*0.9]
             rows: 
               bottom:
-                #bind: [0, 1, 1.5cy, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
-                column_net: P14
+                column_net: PX
               home: 
-                column_net: P16
+                column_net: PX
               top:
-                column_net: P10
+                column_net: P2
           index: 
             stagger: -6
             rotate: -5
             spread: cxx
             rows: 
               bottom:
-                #bind: [0, 1, 1.5cy, 1] # defines the extent of the border for the cutout [num_t, num_r, num_b, num_l]
-                column_net: P4
+                column_net: PX
               home: 
-                column_net: P5
+                column_net: PX
               top: 
-                column_net: P6
+                column_net: P3
           far: 
             stagger: -(cy/1.5)
             spread: cxx
@@ -94,13 +91,13 @@ points:
             rows: 
               bottom:
                 #bind: [0, 2.5cx, 0, 0]
-                column_net: P9
+                column_net: PX
               home: 
                 #bind: [0, 2.5cx, 0, 0]
-                column_net: P7 
+                column_net: PX 
               top: 
                 #bind: [0, 2.5cx, 0, 0]
-                column_net: P8
+                column_net: P5
     thumbfan:
       anchor:
         ref: board_pinkie_bottom
@@ -109,19 +106,27 @@ points:
       columns:
         near:
           rotate: -44
+          rows:
+            thumb:
+              column_net: P8
         home:
           rotate: -5
           origin: [-15, -15]          
+          rows:
+            thumb:
+             column_net: P7
         far:
           rotate: -10
           origin: [-15, -15]
           rows:
-           plop:
-            shift: [0.75 cx, -2.25 cx]
-            column_net: P21
+            thumb:
+             column_net: P6
+            plop:
+             shift: [0.75 cx, -2.25 cx]
+             column_net: P5
       rows:
-        thumb:
-         column_net: P21
+        #thumb:
+         #column_net: P21
 outlines:
   exports:
     raw: 
@@ -184,24 +189,13 @@ pcbs:
         outline: cutout
     footprints:
       promicro:
-        type: promicro
+        type: promicro_pretty
         anchor:
           ref: board_far_home
-          shift: [1.2 cx, -0.5 cx]
+          shift: [1.3 cx, -0.5 cx]
           rotate: -90
         params:
           orientation: down
-      pcm12:
-        type: pcm12
-        anchor:
-          ref: board_far_home
-          shift: [2 cx, -cx]
-          rotate: 90
-        nets:
-          from: pos  
-          to: RAW
-        params:
-          reverse: true 
       via3:
         type: via
         anchor: 
@@ -230,15 +224,26 @@ pcbs:
           shift: [6,-10]
         nets: 
           net: RST 
+      pcm12:
+        type: pcm12
+        anchor:
+          ref: board_far_home
+          shift: [2 cx, 0]
+          rotate: 90
+        nets:
+          from: pos  
+          to: RAW
+        params:
+          reverse: true 
       b3u1000p:
         type: b3u1000p
         nets:
           r1: RST  
           r2: GND
         anchor:
-          ref: board_far_bottom
-          shift: [35, -10]
-          rotate: 0
+          ref: board_far_home
+          shift: [2 cx, -9]
+          rotate: 90
         params:
           reverse: true 
       bat:
@@ -249,68 +254,3 @@ pcbs:
           ref: board_far_bottom
           shift: [-42 , -0]
           rotate: 0
-#units:
-#  cx: 18 # defaults: choc x 18mm
-#  cy: 17 #           choc y 17mm
-#points:
-#  key:
-#    padding: cy
-#    footprints:
-#      choc_hotswap:
-#        type: choc
-#        nets:
-#          from: =column_net
-#          to: GND
-#      params:
-#        keycaps: true
-#        reverse: true
-#        hotswap: true
-#      choc:
-#        type: choc
-#        anchor:
-#          rotate: 180
-#        nets:
-#          from: =column_net
-#          to: GND
-#        params:
-#          keycaps: true
-#          reverse: true
-#  zones:
-#    matrix:
-#      anchor:
-#        rotate: 5
-#      columns:
-#        pinky:
-#        ring:
-#          rotate: -5
-#          origin: [-12, -19]
-#          stagger: 12
-#        middle:
-#          stagger: 5
-#        index:
-#          stagger: -6
-#        inner:
-#          stagger: -2
-#      rows:
-#        bottom:
-#        home:
-#        top:
-#    thumbfan:
-#      anchor:
-#        ref: matrix_inner_bottom
-#        shift: [-7, -19]
-#      columns:
-#        near:
-#        home:
-#          spread: 21.25
-#          rotate: -28
-#          origin: [-11.75, -9]
-#        far:
-#          spread: 21.25
-#          rotate: -28
-#          origin: [-9.5, -9]
-#      rows:
-#        thumb:
-#  rotate: -20
-
-
