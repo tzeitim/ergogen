@@ -99,7 +99,7 @@ points:
               bottom:
                 column_net: P6
               home: 
-                column_net: P6 
+                column_net: P6
               top: 
                 column_net: P6
       rows:
@@ -121,7 +121,7 @@ points:
             thumb:
               column_net: P16
         home:
-          rotate: -222333444555666987
+          rotate: -5
           origin: [-15, -15]          
           rows:
             thumb:
@@ -216,48 +216,48 @@ pcbs:
           shift: [ 15, 10]
         nets:
           net: P16 
-      #thumb_col_row:
-        #type: via
-        #anchor: 
-          #ref: thumbfan_near_thumb
-          #shift: [-cx, 0 ]
-        #nets:
-          #net: P10 
-      #pinky_via_col:
-        #type: via
-        #anchor: 
-          #ref: board_pinkie_top
-          #shift: [0,0]
-        #nets: 
-          #net: P2 
-      #ring_via_col:
-        #type: via
-        #anchor: 
-          #ref: board_ring_top
-          #shift: [-4,-10]
-        #nets: 
-          #net: pos 
-      #middle_via_col:
-        #type: via
-        #anchor: 
-          #ref: board_middle_top
-          #shift: [8,-10]
-        #nets: 
-          #net: GND 
-      #index_via_col:
-        #type: via
-        #anchor: 
-          #ref: board_index_top
-          #shift: [6,-10]
-        #nets: 
-          #net: RST 
-      #far_via_col:
-        #type: via
-        #anchor: 
-          #ref: board_index_top
-          #shift: [6,-10]
-        #nets: 
-          #net: RST 
+      thumb_col_row:
+        type: via
+        anchor: 
+          ref: thumbfan_near_thumb
+          shift: [-cx, 0 ]
+        nets:
+          net: P10 
+      pinky_via_col:
+        type: via
+        anchor: 
+          ref: board_pinkie_top
+          shift: [0,0]
+        nets: 
+          net: P2 
+      ring_via_col:
+        type: via
+        anchor: 
+          ref: board_ring_top
+          shift: [-4,-10]
+        nets: 
+          net: pos 
+      middle_via_col:
+        type: via
+        anchor: 
+          ref: board_middle_top
+          shift: [8,-10]
+        nets: 
+          net: GND 
+      index_via_col:
+        type: via
+        anchor: 
+          ref: board_index_top
+          shift: [6,-10]
+        nets: 
+          net: RST 
+      far_via_col:
+        type: via
+        anchor: 
+          ref: board_index_top
+          shift: [6,-10]
+        nets: 
+          net: RST 
       pcm12:
         type: pcm12
         anchor:
