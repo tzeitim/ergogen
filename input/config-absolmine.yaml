@@ -11,7 +11,7 @@ points:
             type: choc
             nets:
               from: =column_net
-              to: GND
+              to: =colrow
             params:
                 keycaps: true
                 reverse: true
@@ -22,17 +22,24 @@ points:
               rotate: 180
             nets:
               from: =column_net
-              to: GND
+              to: =colrow
             params:
                 keycaps: true
                 reverse: true
+          diode:
+            type: diode
+            anchor:
+              rotate: 90
+              shift: [8.25, 0]
+            nets:
+              from: =colrow
+              to: =row_net
+            params:
+              via_in_pad: true 
+              through_hole: true 
    zones:
     board:
       rotate: 30 # check the outlines when not 0
-      rows:
-        bottom:
-        home:
-        top:
       columns:          
           pinkie:
             spread: cxx
@@ -40,15 +47,15 @@ points:
             rows:
               top:
                 bind: [0, 0] 
-                column_net: P0
+                column_net: P2
                 rotate: -10
               home:
-                column_net: PX
+                column_net: P2
                 bind: [0, 0] 
               bottom:
                 shift: [3, 0]
                 bind: [0, 0] 
-                column_net: PX
+                column_net: P2
           ring:
             stagger: 12
             rotate: -105+90
@@ -56,11 +63,11 @@ points:
             spread: cxx
             rows: 
               bottom:
-                column_net: PX
+                column_net: P3
               home: 
-                column_net: PX
+                column_net: P3
               top: 
-                column_net: P1
+                column_net: P3
           middle: 
             stagger: 5
             spread: cxx
@@ -68,36 +75,40 @@ points:
             origin: [-cy*3.5, -cx*0.9]
             rows: 
               bottom:
-                column_net: PX
+                column_net: P4
               home: 
-                column_net: PX
+                column_net: P4
               top:
-                column_net: P2
+                column_net: P4
           index: 
             stagger: -6
             rotate: -5
             spread: cxx
             rows: 
               bottom:
-                column_net: PX
+                column_net: P5
               home: 
-                column_net: PX
+                column_net: P5
               top: 
-                column_net: P3
+                column_net: P5
           far: 
             stagger: -(cy/1.5)
             spread: cxx
             origin: [-cy, -cx]
             rows: 
               bottom:
-                #bind: [0, 2.5cx, 0, 0]
-                column_net: PX
+                column_net: P6
               home: 
-                #bind: [0, 2.5cx, 0, 0]
-                column_net: PX 
+                column_net: P6 
               top: 
-                #bind: [0, 2.5cx, 0, 0]
-                column_net: P5
+                column_net: P6
+      rows:
+        bottom:
+          row_net: P9
+        home: 
+          row_net: P8
+        top: 
+          row_net: P7
     thumbfan:
       anchor:
         ref: board_pinkie_bottom
@@ -108,25 +119,27 @@ points:
           rotate: -44
           rows:
             thumb:
-              column_net: P8
+              column_net: P16
         home:
-          rotate: -5
+          rotate: -222333444555666987
           origin: [-15, -15]          
           rows:
             thumb:
-             column_net: P7
+             column_net: P16
         far:
           rotate: -10
           origin: [-15, -15]
           rows:
             thumb:
-             column_net: P6
+             column_net: P16
             plop:
              shift: [0.75 cx, -2.25 cx]
-             column_net: P5
+             column_net: P16
+             row_net: P10
       rows:
-        #thumb:
-         #column_net: P21
+        thumb:
+         row_net: P10
+
 outlines:
   exports:
     raw: 
@@ -196,34 +209,55 @@ pcbs:
           rotate: -90
         params:
           orientation: down
-      via3:
+      thumb_col_via:
         type: via
         anchor: 
-          ref: board_pinkie_bottom
-          shift: [-2,-10]
-        nets: 
-          net: RAW 
-      via4:
-        type: via
-        anchor: 
-          ref: board_pinkie_bottom
-          shift: [-4,-10]
-        nets: 
-          net: pos 
-      via5:
-        type: via
-        anchor: 
-          ref: board_pinkie_bottom
-          shift: [8,-10]
-        nets: 
-          net: GND 
-      via6:
-        type: via
-        anchor: 
-          ref: board_pinkie_bottom
-          shift: [6,-10]
-        nets: 
-          net: RST 
+          ref: thumbfan_far_thumb
+          shift: [ 15, 10]
+        nets:
+          net: P16 
+      #thumb_col_row:
+        #type: via
+        #anchor: 
+          #ref: thumbfan_near_thumb
+          #shift: [-cx, 0 ]
+        #nets:
+          #net: P10 
+      #pinky_via_col:
+        #type: via
+        #anchor: 
+          #ref: board_pinkie_top
+          #shift: [0,0]
+        #nets: 
+          #net: P2 
+      #ring_via_col:
+        #type: via
+        #anchor: 
+          #ref: board_ring_top
+          #shift: [-4,-10]
+        #nets: 
+          #net: pos 
+      #middle_via_col:
+        #type: via
+        #anchor: 
+          #ref: board_middle_top
+          #shift: [8,-10]
+        #nets: 
+          #net: GND 
+      #index_via_col:
+        #type: via
+        #anchor: 
+          #ref: board_index_top
+          #shift: [6,-10]
+        #nets: 
+          #net: RST 
+      #far_via_col:
+        #type: via
+        #anchor: 
+          #ref: board_index_top
+          #shift: [6,-10]
+        #nets: 
+          #net: RST 
       pcm12:
         type: pcm12
         anchor:
@@ -253,4 +287,4 @@ pcbs:
         anchor:
           ref: board_far_bottom
           shift: [1 cx, -10]
-          rotate: 0
+          rotate: 1
