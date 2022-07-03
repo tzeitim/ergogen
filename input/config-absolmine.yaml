@@ -252,5 +252,5 @@ pcbs:
           neg: GND
         anchor:
           ref: board_far_bottom
-          shift: [-42 , -0]
+          shift: [1 cx, -10]
           rotate: 0
