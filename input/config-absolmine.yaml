@@ -46,16 +46,16 @@ points:
             rotate: 0
             rows:
               top:
-                bind: [0, 0] 
                 column_net: P2
+                bind: [0, 0] 
                 rotate: -10
               home:
                 column_net: P2
                 bind: [0, 0] 
               bottom:
+                column_net: P2
                 shift: [3, 0]
                 bind: [0, 0] 
-                column_net: P2
           ring:
             stagger: 12
             rotate: -105+90
@@ -155,11 +155,11 @@ outlines:
         - ref: board_pinkie_top
           shift: [-0.75 cx, 0.5cx]
         - ref: board_ring_top
-          shift: [-10, 0.6 cx]          
+          shift: [-10, 0.75 cx]          
         - ref: board_middle_top
-          shift: [-5, 0.75 cx]
+          shift: [-5, 0.85 cx]
         - ref: board_index_top
-          shift: [cx, .6 cx]
+          shift: [cx, .85 cx]
         - ref: board_far_top
           shift: [2 cx, 2]
         - ref: thumbfan_far_thumb
@@ -179,11 +179,10 @@ outlines:
     cutout:
       - type: outline
         name: raw
-        #fillet: 5
       - type: outline
         name: filler
-        fillet: 5
-        operation: stack
+        fillet: 7
+        #operation: stack
     keycap_outlines:
       - type: keys
         side: left
@@ -227,37 +226,37 @@ pcbs:
         type: via
         anchor: 
           ref: board_pinkie_top
-          shift: [0,0]
+          shift: [10,10]
         nets: 
           net: P2 
       ring_via_col:
         type: via
         anchor: 
           ref: board_ring_top
-          shift: [-4,-10]
+          shift: [10, 10]
         nets: 
-          net: pos 
+          net: P3 
       middle_via_col:
         type: via
         anchor: 
           ref: board_middle_top
-          shift: [8,-10]
+          shift: [10, 10]
         nets: 
-          net: GND 
+          net: P4 
       index_via_col:
         type: via
         anchor: 
           ref: board_index_top
-          shift: [6,-10]
+          shift: [10, 10]
         nets: 
-          net: RST 
+          net: P5 
       far_via_col:
         type: via
         anchor: 
-          ref: board_index_top
-          shift: [6,-10]
+          ref: board_far_top
+          shift: [10, 10]
         nets: 
-          net: RST 
+          net: P6 
       pcm12:
         type: pcm12
         anchor:
