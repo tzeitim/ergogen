@@ -1,0 +1,292 @@
+units:
+  cxx: cx+1
+  cyy: cy+5
+  mcx: 1.25 cx
+  mcy: 2.25 cy 
+points:
+   key:
+      padding: 1.15 cy
+      footprints:
+          choc_hotswap:
+            type: choc
+            nets:
+              from: =column_net
+              to: =colrow
+            params:
+                keycaps: true
+                reverse: true
+                hotswap: true
+          choc:
+            type: choc
+            anchor:
+              rotate: 180
+            nets:
+              from: =column_net
+              to: =colrow
+            params:
+                keycaps: true
+                reverse: true
+          diode:
+            type: diode
+            anchor:
+              rotate: 90
+              shift: [8.25, 0]
+            nets:
+              from: =colrow
+              to: =row_net
+            params:
+              via_in_pad: true 
+              through_hole: true 
+   zones:
+    board:
+      rotate: 30 # check the outlines when not 0
+      columns:          
+          pinkie:
+            spread: cxx
+            rotate: 0
+            rows:
+              top:
+                column_net: P2
+                rotate: -10
+              home:
+                column_net: P2
+              bottom:
+                column_net: P2
+                shift: [3, 0]
+          ring:
+            stagger: 12
+            rotate: -105+90
+            origin: [-cy*2.2, -cx*1.8]
+            spread: cxx
+            rows: 
+              bottom:
+                column_net: P3
+              home: 
+                column_net: P3
+              top: 
+                column_net: P3
+          middle: 
+            stagger: 5
+            spread: cxx
+            rotate: -9
+            origin: [-cy*3.5, -cx*0.9]
+            rows: 
+              bottom:
+                column_net: P4
+              home: 
+                column_net: P4
+              top:
+                column_net: P4
+          index: 
+            stagger: -6
+            rotate: -5
+            spread: cxx
+            rows: 
+              bottom:
+                column_net: P5
+              home: 
+                column_net: P5
+              top: 
+                column_net: P5
+          far: 
+            stagger: -(cy/1.5)
+            spread: cxx
+            origin: [-cy, -cx]
+            rows: 
+              bottom:
+                column_net: P6
+              home: 
+                column_net: P6
+              top: 
+                column_net: P6
+      rows:
+        bottom:
+          row_net: P9
+        home: 
+          row_net: P8
+        top: 
+          row_net: P7
+    thumbfan:
+      anchor:
+        ref: board_pinkie_bottom
+        shift: [18*2.65, -18*3.5]
+        orient: 0
+      columns:
+        near:
+          rotate: -44
+          rows:
+            thumb:
+              column_net: P16
+        home:
+          rotate: -5
+          origin: [-15, -15]          
+          rows:
+            thumb:
+             column_net: P16
+            plop:
+             shift: [-0.0 cx, 0]
+             column_net: P16
+             row_net: P10      
+        far:
+          rotate: -10
+          origin: [-15, -15]
+          rows:
+            thumb:
+             column_net: P16
+            plop:
+             shift: [0.0 cx, 0. cx]
+             column_net: P16
+             row_net: P10
+      rows:
+        thumb:
+         row_net: P10
+
+outlines:
+  exports:
+    raw: 
+      main:
+        type: keys
+        side: left
+        size: [1 cx, 1.1 cy]
+    kfillet: 
+      - type: outline
+        name: raw
+        fillet: 3
+    filler:
+      - type: polygon
+        points:
+        - ref: board_pinkie_top
+          shift: [-0.55 cx, 0.4 cx]
+        - ref: board_ring_top
+          shift: [-7, 0.6 cy]          
+        - ref: board_middle_top
+          shift: [-0.85 cx, 0.75 cx]
+        - ref: board_index_top
+          shift: [cx, .7 cy]
+        - ref: board_far_top
+          shift: [2 cx, 2]
+        - ref: thumbfan_far_thumb
+          shift: [0.55 cx, 1.6 cx]
+        - ref: thumbfan_far_plop
+          shift: [0.65 cx, -1.7 cx]
+        - ref: board_pinkie_bottom
+          shift: [-0.9 cx, -30]
+    mc:
+      main:
+        type: rectangle
+        anchor:
+          ref:
+            - board_far_home
+          shift: [mcx/2, -1mcy]
+        size: [mcx, 3cy] 
+    cutout:
+      - type: outline
+        name: kfillet
+      - type: outline
+        name: filler
+        fillet: 4
+        #operation: stack
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false               
+    demo:
+        - type: outline
+          name: keycap_outlines
+        - type: outline
+          name: filler
+          operation: stack
+pcbs:
+  comonfort:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro_pretty
+        anchor:
+          ref: board_far_home
+          shift: [1.3 cx, -0.5 cx]
+          rotate: -90
+        params:
+          orientation: down
+      thumb_col_via:
+        type: via
+        anchor: 
+          ref: thumbfan_far_plop
+          shift: [ -12.5, 8.5]
+        nets:
+          net: P16 
+      thumb_col_row:
+        type: via
+        anchor: 
+          ref: thumbfan_near_thumb
+          shift: [-cx, 0 ]
+        nets:
+          net: P10 
+      pinky_via_col:
+        type: via
+        anchor: 
+          ref: board_pinkie_top
+          shift: [10,10]
+        nets: 
+          net: P2 
+      ring_via_col:
+        type: via
+        anchor: 
+          ref: board_ring_top
+          shift: [10, 8]
+        nets: 
+          net: P3 
+      middle_via_col:
+        type: via
+        anchor: 
+          ref: board_middle_top
+          shift: [10, 7]
+        nets: 
+          net: P4 
+      index_via_col:
+        type: via
+        anchor: 
+          ref: board_index_top
+          shift: [10, 10]
+        nets: 
+          net: P5 
+      far_via_col:
+        type: via
+        anchor: 
+          ref: board_far_top
+          shift: [10, 10]
+        nets: 
+          net: P6 
+      pcm12:
+        type: pcm12
+        anchor:
+          ref: board_far_home
+          shift: [2 cx, 0]
+          rotate: 90
+        nets:
+          from: pos  
+          to: RAW
+        params:
+          reverse: true 
+      b3u1000p:
+        type: b3u1000p
+        nets:
+          r1: RST  
+          r2: GND
+        anchor:
+          ref: board_far_home
+          shift: [2 cx, -9]
+          rotate: 90
+        params:
+          reverse: true 
+      bat:
+        type: bat
+        nets: 
+          neg: GND
+        anchor:
+          ref: board_far_home
+          shift: [2 cx, -1.5 cx]
+          rotate: 0
