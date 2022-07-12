@@ -108,39 +108,38 @@ points:
           row_net: P7
     thumbfan:
       anchor:
-        ref: board_pinkie_bottom
-        shift: [18*2.65, -18*3.5]
-        orient: 0
+        ref: board_index_bottom
+        shift: [0, -1.2cx]
       columns:
         near:
-          rotate: -44
+          rotate: 0
           rows:
             thumb:
               column_net: P16
         home:
-          rotate: -5
-          origin: [-15, -15]          
+          rotate: -45
+          stagger: -0.8cx
+          origin: [0, 0]          
           rows:
             thumb:
              column_net: P16
             plop:
-             shift: [-0.0 cx, 0]
+             shift: [.2 cx, 0]
              column_net: P16
              row_net: P10      
         far:
-          rotate: -10
-          origin: [-15, -15]
+          rotate: 0
+
           rows:
             thumb:
              column_net: P16
             plop:
-             shift: [0.0 cx, 0. cx]
+             shift: [3,0]
              column_net: P16
              row_net: P10
       rows:
         thumb:
          row_net: P10
-
 outlines:
   exports:
     raw: 
