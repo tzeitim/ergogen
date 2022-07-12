@@ -47,14 +47,14 @@ points:
             rows:
               top:
                 column_net: P2
-                rotate: -10
+                rotate: 0
               home:
                 column_net: P2
               bottom:
                 column_net: P2
                 shift: [3, 0]
           ring:
-            stagger: 12
+            stagger: 1.5 cy
             rotate: -105+90
             origin: [-cy*2.2, -cx*1.8]
             spread: cx
